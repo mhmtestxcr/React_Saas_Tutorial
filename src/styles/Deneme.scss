@@ -1,0 +1,103 @@
+// Veri türleri number,string,boolean,color
+// import yazarak iki tane scss uzantılı dosyayı birleştirebiliyorsun
+@import "variables";
+
+@mixin boxRadious($value){
+  border-radius: $value;
+}
+
+@mixin special($height,$circle:false) {
+  height: $height;
+  @if $circle{
+
+    border-radius: $size/2;
+  }
+}
+
+h1{
+  background-color:$background-color;
+  color:yellow;
+  // matematik oparetörlerini kullanabiliyorsun
+  font-size: $size+$size1; 
+  text-align: center;
+
+}
+
+h2.#{$name}{
+  font-style: italic ;
+  text-align: center;
+}
+
+ul{
+  text-align: center;
+  text-decoration: none;
+  list-style-type: none;
+        
+  li{
+    margin-top:1rem;
+    // iç içe kullanılabilir ve & işareti ile hover verebiliyorsun '&' bir önceki  taga göre işlem yapar
+    a{
+      background-color: #151531;
+      color: yellow;
+      text-decoration: none;
+
+    }
+    &:hover{
+      color:yellow ;
+      background-color: #151531;
+      text-decoration: underline;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.error{
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #151531;
+  text-align: center;
+
+}
+// miras alma
+.error-with{
+
+  @extend .error;
+}
+%message{
+  border: 1px solid orange;
+  padding: 15px;
+  width: 40%;
+  color: orange;
+  text-align: center;
+  width: 80%;
+  margin-left: 8rem;
+}
+
+.errorr{
+  @extend %message;
+  border-color: red;
+  color: red;
+  @include boxRadious(10px)
+}
+
+.success{
+  @extend %message;
+  border-color: green;
+  color: green;
+}
+
+.warning{
+  @extend %message;
+  @include boxRadious(50px)
+
+}
+
+.info{
+
+  @extend %message;
+  border-color: grey;
+  color: grey;
+  @include special(100px,true);
+}
